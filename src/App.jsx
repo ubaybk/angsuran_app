@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
-  const [otr, setOtr] = useState("")
+  const [otr, setOtr] = useState("");
   const [dpPercentage, setDpPercentage] = useState("");
-  const [jangkaWaktu, setJangkaWaktu] = useState("")
+  const [jangkaWaktu, setJangkaWaktu] = useState("");
   const [angsuran, setAngsuran] = useState(null);
 
   const getBungaTahunan = (jangkaWaktu) => {
@@ -25,10 +25,10 @@ function App() {
     const bungaTahunan = getBungaTahunan(jangkaWaktuBulan);
     const totalBunga = pokok * bungaTahunan;
 
-     // Rumus baru: (pokok + (pokok * bunga)) / jangka waktu
-     const angsuranPerBulan = (pokok + totalBunga) / jangkaWaktuBulan;
+    // Rumus baru: (pokok + (pokok * bunga)) / jangka waktu
+    const angsuranPerBulan = (pokok + totalBunga) / jangkaWaktuBulan;
 
-     setAngsuran(angsuranPerBulan);
+    setAngsuran(angsuranPerBulan);
     toast.success(`Perhitungan berhasil`);
   };
 
@@ -41,10 +41,13 @@ function App() {
     }).format(Number(value));
   };
 
-
-
   return (
-    <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen p-5 relative flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white">
+      <div className="absolute bottom-5 right-5">
+        <h1 className="font-bold italic text-gray-700 text-[20px]">
+          Bayu Kurniawan
+        </h1>
+      </div>
       <h1 className="text-center font-bold text-4xl md:text-[50px] text-blue-600 mb-10">
         HITUNG ANGSURAN
       </h1>
@@ -61,7 +64,9 @@ function App() {
             />
           </div>
           <div className="flex items-center gap-3">
-            <h2 className="w-32 text-right text-gray-700 font-medium">DP (%) :</h2>
+            <h2 className="w-32 text-right text-gray-700 font-medium">
+              DP (%) :
+            </h2>
             <input
               placeholder="Masukkan DP"
               type="number"
@@ -75,7 +80,7 @@ function App() {
               Jangka Waktu :
             </h2>
             <input
-              placeholder="Masukkan Jangka Waktu (bulan)"
+              placeholder="Jangka Waktu (bulan)"
               type="number"
               value={jangkaWaktu}
               onChange={(e) => setJangkaWaktu(e.target.value)}
@@ -88,7 +93,7 @@ function App() {
           >
             Hitung Angsuran
           </button>
-          <ToastContainer/>
+          <ToastContainer />
           {angsuran !== null && (
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <h3 className="text-center text-gray-700 font-medium mb-2">
